@@ -8,7 +8,7 @@
 %define _disable_lto 1
 
 Name: openblas
-Version: 0.3.27
+Version: 0.3.28
 Release: 1
 Source0: https://github.com/OpenMathLib/OpenBLAS/releases/download/v%{version}/OpenBLAS-%{version}.tar.gz
 Summary: Optimized BLAS library
