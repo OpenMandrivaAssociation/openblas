@@ -15,7 +15,7 @@
 %bcond lapack		1
 %bcond lapacke		1
 %bcond relapack		0
-%bcond static		1
+%bcond static		0
 %bcond testing		1
 
 %global optflags %{optflags} -O3
@@ -189,7 +189,7 @@ do
 	fi
 
 	%cmake -Wno-dev \
-		-DBUILD_STATIC_LIBS:BOOL=OFF \
+		-DBUILD_STATIC_LIBS:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
 		-DBUILD_SHARED_LIBS:BOOL=ON \
 		-DBUILD_LAPACK_DEPRECATED:BOOL=%{?with_deprecated:ON}%{?!with_deprecated:OFF} \
 		-DBUILD_RELAPACK=%{?with_relapack:ON}%{?!with_relapack:OFF} \
