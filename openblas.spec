@@ -144,7 +144,7 @@ export CXX=g++
 export FC=gfortran
 
 # architectures
-%ifarch %{ix86} x86_64
+%ifarch %{ix86} x86_64 znver1
 TARGET="CORE2"
 %endif
 %ifarch aarch64
