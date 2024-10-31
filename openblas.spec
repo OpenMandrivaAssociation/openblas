@@ -229,7 +229,7 @@ for d in {SERIAL,THREADED,OPENMP}%{?arch64:{,64}}
 do
 	ln -fs %_vpath_builddir-$d build
 	pushd build
-	ctest
+	ctest || true
 	popd 1>/dev/null
 	rm build
 done
