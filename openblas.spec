@@ -37,8 +37,8 @@ Computational Science, ISCAS. http://www.rdcps.ac.cn.
 
 Summary:	An optimized BLAS library based on GotoBLAS2
 Name:		openblas
-Version:	0.3.28
-Release:	2
+Version:	0.3.29
+Release:	1
 Group:		Sciences/Mathematics
 License:	BSD-3-Clause
 URL:		https://github.com/OpenMathLib/OpenBLAS
@@ -53,7 +53,7 @@ BuildRequires:	gomp-devel
 %description %_description
 
 
-#---------------------------------------------------------------------------
+#----------------------------------------------------------------------
 
 %package -n %{libname}
 Summary:	An optimized BLAS library based on GotoBLAS2
@@ -70,7 +70,7 @@ This package contains the sequential library.
 %{_libdir}/lib%{name}64.so.%{major}*
 %endif
 
-#---------------------------------------------------------------------------
+#----------------------------------------------------------------------
 
 %package -n %{libpname}
 Summary:	An optimized BLAS library based on GotoBLAS2
@@ -86,7 +86,7 @@ This package contains library compiled with threading support.
 %{_libdir}/lib%{pname}64.so.%{major}*
 %endif
 
-#---------------------------------------------------------------------------
+#----------------------------------------------------------------------
 
 %package -n %{liboname}
 Summary:	An optimized BLAS library based on GotoBLAS2
@@ -102,7 +102,7 @@ This package contains library compiled with OpenMP support.
 %{_libdir}/lib%{oname}64.so.%{major}*
 %endif
 
-#---------------------------------------------------------------------------
+#----------------------------------------------------------------------
 
 %package -n %{devname}
 Summary:	Development files for %{name}
@@ -132,7 +132,7 @@ Development files (Headers etc.) for %{name}.
 %{_libdir}/lib%{pname}64.so
 %endif
 
-#---------------------------------------------------------------------------
+#----------------------------------------------------------------------
 
 %prep
 %autosetup -p1 -n OpenBLAS-%{version}
@@ -188,6 +188,7 @@ do
 		INTERFACE64=0
 	fi
 
+	CMAKE_BUILD_DIR="%_vpath_builddir-$d"
 	%cmake -Wno-dev \
 		-DBUILD_STATIC_LIBS:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
 		-DBUILD_SHARED_LIBS:BOOL=ON \
@@ -210,9 +211,7 @@ do
 		-DCMAKE_Fortran_COMPILER=$FC \
 		-GNinja
 	%ninja_build
-
 	cd ..
-	mv %_vpath_builddir %_vpath_builddir-$d
 done
 
 %install
@@ -229,7 +228,7 @@ for d in {SERIAL,THREADED,OPENMP}%{?arch64:{,64}}
 do
 	ln -fs %_vpath_builddir-$d build
 	pushd build
-	ctest || true
+	ctest
 	popd 1>/dev/null
 	rm build
 done
