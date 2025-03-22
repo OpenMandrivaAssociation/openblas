@@ -228,7 +228,7 @@ for d in {SERIAL,THREADED,OPENMP}%{?arch64:{,64}}
 do
 	ln -fs %_vpath_builddir-$d build
 	pushd build
-	ctest
+	LD_LIBRARY_PATH=%{buildroot}%{_libdir}:$LD_LIBRARY_PATH ctest
 	popd 1>/dev/null
 	rm build
 done
