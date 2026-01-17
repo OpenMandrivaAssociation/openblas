@@ -37,7 +37,7 @@ Computational Science, ISCAS. http://www.rdcps.ac.cn.
 
 Summary:	An optimized BLAS library based on GotoBLAS2
 Name:		openblas
-Version:	0.3.29
+Version:	0.3.31
 Release:	1
 Group:		Sciences/Mathematics
 License:	BSD-3-Clause
