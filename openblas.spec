@@ -43,7 +43,7 @@ Group:		Sciences/Mathematics
 License:	BSD-3-Clause
 URL:		https://github.com/OpenMathLib/OpenBLAS
 Source0:	https://github.com/OpenMathLib/OpenBLAS/archive/v%{version}/openblas-%{version}.tar.gz
-Patch0:		openblas-0.3.28-suffix.patch
+#Patch0:		openblas-0.3.28-suffix.patch
 
 BuildRequires:	cmake ninja
 BuildRequires:	gcc-gfortran
