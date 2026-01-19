@@ -66,7 +66,7 @@ This package contains the sequential library.
 %files -n %{libname}
 %license LICENSE
 %{_libdir}/lib%{name}.so.%{major}*
-%if 0%{?arch64}
+%ifarch %{aarch64}
 %{_libdir}/lib%{name}64.so.%{major}*
 %endif
 
@@ -82,7 +82,7 @@ This package contains library compiled with threading support.
 %files -n %{libpname}
 %license LICENSE
 %{_libdir}/lib%{pname}.so.%{major}*
-%if 0%{?arch64}
+%if %aarch64
 %{_libdir}/lib%{pname}64.so.%{major}*
 %endif
 
@@ -98,7 +98,7 @@ This package contains library compiled with OpenMP support.
 %files -n %{liboname}
 %license LICENSE
 %{_libdir}/lib%{oname}.so.%{major}*
-%if 0%{?arch64}
+%ifarch %{aarch64}
 %{_libdir}/lib%{oname}64.so.%{major}*
 %endif
 
@@ -125,7 +125,7 @@ Development files (Headers etc.) for %{name}.
 %{_libdir}/lib%{name}.so
 %{_libdir}/lib%{oname}.so
 %{_libdir}/lib%{pname}.so
-%if 0%{?arch64}
+%ifarch %{aarch64}
 %{_includedir}/%{name}64/
 %{_libdir}/lib%{name}64.so
 %{_libdir}/lib%{oname}64.so
