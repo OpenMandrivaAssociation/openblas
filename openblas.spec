@@ -82,7 +82,7 @@ This package contains library compiled with threading support.
 %files -n %{libpname}
 %license LICENSE
 %{_libdir}/lib%{pname}.so.%{major}*
-%if %aarch64
+%ifarch %{aarch64}
 %{_libdir}/lib%{pname}64.so.%{major}*
 %endif
 
