@@ -1,14 +1,14 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -103,7 +103,7 @@
- include("${PROJECT_SOURCE_DIR}/cmake/utils.cmake")
- include("${PROJECT_SOURCE_DIR}/cmake/system.cmake")
- 
--set(OpenBLAS_LIBNAME ${LIBNAMEPREFIX}openblas${LIBNAMESUFFIX}${SUFFIX64_UNDERSCORE})
-+set(OpenBLAS_LIBNAME ${LIBNAMEPREFIX}openblas${LIBNAMESUFFIX}${SUFFIX64})
+@@ -128,7 +128,7 @@
+ if (${HAVE64} GREATER -1)
+ 	set(OpenBLAS_LIBNAME ${LIBNAMEPREFIX}openblas${LIBNAMESUFFIX})
+ else ()
+-	set(OpenBLAS_LIBNAME ${LIBNAMEPREFIX}openblas${LIBNAMESUFFIX}${SUFFIX64_UNDERSCORE})
++	set(OpenBLAS_LIBNAME ${LIBNAMEPREFIX}openblas${LIBNAMESUFFIX}${SUFFIX64})
+ endif ()
  
  set(BLASDIRS interface driver/level2 driver/level3 driver/others)
- 
 @@ -615,8 +615,8 @@ if(NOT NO_LAPACKE)
  endif()
  
@@ -28,9 +28,9 @@
    add_executable(${name} ${ARGN})
 -  target_link_libraries(${name} ${LIBNAMEPREFIX}openblas${LIBNAMESUFFIX}${SUFFIX64_UNDERSCORE})
 +  target_link_libraries(${name} ${LIBNAMEPREFIX}openblas${LIBNAMESUFFIX}${SUFFIX64})
+ #${TMGLIB} ../${LAPACK_LIBRARIES} ${BLAS_LIBRARIES})
+ endmacro()
  
-   if (USE_OPENMP AND (${CMAKE_Fortran_COMPILER_ID} STREQUAL GNU) AND (${CMAKE_C_COMPILER_ID} STREQUAL Clang))
- 	  string(REGEX REPLACE "-fopenmp" "" CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}")
 --- a/lapack-netlib/TESTING/LIN/CMakeLists.txt
 +++ b/lapack-netlib/TESTING/LIN/CMakeLists.txt
 @@ -239,7 +239,7 @@ set(ZLINTSTRFP zchkrfp.f zdrvrfp.f zdrvr
@@ -39,6 +39,7 @@
    add_executable(${name} ${ARGN})
 -  target_link_libraries(${name} ${LIBNAMEPREFIX}openblas${LIBNAMESUFFIX}${SUFFIX64_UNDERSCORE})
 +  target_link_libraries(${name} ${LIBNAMEPREFIX}openblas${LIBNAMESUFFIX}${SUFFIX64})
-   if (USE_OPENMP AND (${CMAKE_Fortran_COMPILER_ID} STREQUAL GNU) AND (${CMAKE_C_COMPILER_ID} STREQUAL Clang))
- 	string(REGEX REPLACE "-fopenmp" "" CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}")
-         target_link_libraries(${name} omp pthread)
+ #${TMGLIB} ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES})
+ endmacro()
+ 
+
