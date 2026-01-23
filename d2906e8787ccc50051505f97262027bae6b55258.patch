@@ -1,0 +1,31 @@
+From d2906e8787ccc50051505f97262027bae6b55258 Mon Sep 17 00:00:00 2001
+From: Alex James <git@alextjam.es>
+Date: Sat, 17 Jan 2026 22:03:29 -0800
+Subject: [PATCH] Fix ARMV9SME/VORTEXM4 GEMM compilation with SMP disabled
+
+gemm.c currently declares gotoblas_corename in SMP-enabled builds, but
+the ARMV9SME and VORTEXM4 targets call gotoblas_corename even when SMP
+is disabled. Fix compilation of the ARMV9SME and VORTEXM4 targets with
+SMP disabled by unconditionally declaring gotoblas_corename for
+DYNAMIC_ARCH builds.
+---
+ interface/gemm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/interface/gemm.c b/interface/gemm.c
+index 4b1c9a93cc..60addbd2ca 100644
+--- a/interface/gemm.c
++++ b/interface/gemm.c
+@@ -184,11 +184,11 @@ static int init_amxtile_permission() {
+ }
+ #endif
+ 
+-#ifdef SMP
+ #ifdef DYNAMIC_ARCH
+ extern char* gotoblas_corename(void);
+ #endif
+ 
++#ifdef SMP
+ #if defined(DYNAMIC_ARCH) || defined(NEOVERSEV1)
+ static inline int get_gemm_optimal_nthreads_neoversev1(double MNK, int ncpu) {
+   return

@@ -51,6 +51,9 @@ BuildRequires:	gomp-devel
 
 %patchlist
 openblas-0.3.31-suffix.patch
+# upstream
+https://github.com/OpenMathLib/OpenBLAS/commit/d2906e8787ccc50051505f97262027bae6b55258.patch
+
 
 %description %_description
 
@@ -139,7 +142,7 @@ Development files (Headers etc.) for %{name}.
 %autosetup -p1 -n OpenBLAS-%{version}
 
 %build
-%global optflags %{optflags} -fno-optimize-sibling-calls 
+%global optflags %{optflags} -fno-optimize-sibling-calls
 export CC=gcc
 export CXX=g++
 export FC=gfortran
