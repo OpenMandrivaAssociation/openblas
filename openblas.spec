@@ -37,7 +37,7 @@ Computational Science, ISCAS. http://www.rdcps.ac.cn.
 
 Summary:	An optimized BLAS library based on GotoBLAS2
 Name:		openblas
-Version:	0.3.31
+Version:	0.3.34
 Release:	1
 Group:		Sciences/Mathematics
 License:	BSD-3-Clause
@@ -50,9 +50,9 @@ BuildRequires:	pkgconfig(lapack)
 BuildRequires:	gomp-devel
 
 %patchlist
-openblas-0.3.31-suffix.patch
+# dropped (no longer applies): openblas-0.3.34-suffix.patch
 # upstream
-https://github.com/OpenMathLib/OpenBLAS/commit/d2906e8787ccc50051505f97262027bae6b55258.patch
+# dropped (no longer applies): https://github.com/OpenMathLib/OpenBLAS/commit/d2906e8787ccc50051505f97262027bae6b55258.patch
 
 
 %description %_description
@@ -139,7 +139,7 @@ Development files (Headers etc.) for %{name}.
 #----------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n OpenBLAS-%{version}
+%autosetup -p1 -n OpenBLAS-0.3.34
 
 %build
 %global optflags %{optflags} -fno-optimize-sibling-calls
